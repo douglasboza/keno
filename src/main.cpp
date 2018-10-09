@@ -35,12 +35,17 @@ int main (int argc, char* const argv[]){
     tabuleiro.inicializa_tabuleiro();
     
     ir::Sorteio sorteio;
+    lista_aposta = aposta.get_numeros_aposta(); 
+
+    ir::MatrizPontos matriz_pontos;
+    matriz_pontos.inicializa_matriz_pontos();
+    int fator_mul(0);
 
     while(numero_rodadas >= 0){
         sorteio.gerar_sorteio();
+        aposta.set_acertos(0);
 
         lista_sorteio = sorteio.get_lista_sorteio(); 
-        lista_aposta = aposta.get_numeros_aposta(); 
 
         std::cout << "---- Nova rodada ----\n" << std::endl;
         std::cout << "Seus números: \n";
@@ -61,7 +66,24 @@ int main (int argc, char* const argv[]){
 
         numero_rodadas -= 1;
         
-        tabuleiro.print_tabuleiro(sorteio, aposta);
+        tabuleiro.print_tabuleiro(sorteio, &aposta);
+
+        
+        std::cout << "\nTotal de números apostados: " << aposta.get_total_numeros_aposta() << std::endl;
+
+        std::cout << "\nTotal de acertos: " << aposta.get_acertos() << std::endl;
+        
+        fator_mul = matriz_pontos.fator_mult(aposta.get_total_numeros_aposta(), aposta.get_acertos());
+        if(fator_mul != -1){
+            if(fator_mul == -2){
+                aposta.set_valor_aposta(aposta.get_valor_aposta() / 2);
+            }else{
+                aposta.set_valor_aposta(aposta.get_valor_aposta() * fator_mul);
+            }
+        }
+        std::cout << "\nValor total: " << aposta.get_valor_aposta() << std::endl;
+        std::cout << "\nfator: " << fator_mul << std::endl;
+
         
     }
 
