@@ -6,16 +6,16 @@
 
 namespace ir {
 	class MatrizPontos{
-		int matriz_pontos[16][16];
+		float matriz_pontos[16][16];
 		public:
 			void inicializa_matriz_pontos();
-			int fator_mult(int total_jogadas, int acertos);
+			float fator_mult(int total_jogadas, int acertos);
 	};
 
 	class NumerosAposta {
 	    int *numeros_aposta;
 	    int total_numeros_aposta;
-	    int valor_aposta;
+	    double valor_aposta;
 	    int acertos;
 	  	public: 
 	  		NumerosAposta();
@@ -23,8 +23,8 @@ namespace ir {
 	  		int get_acertos();
 	  		void add_acertos();
 	  		int* get_numeros_aposta();
-	  		void set_valor_aposta(int valor);
-	  		int get_valor_aposta();
+	  		void set_valor_aposta(double valor);
+	  		double get_valor_aposta();
 	  		void set_total_numeros_aposta(int valor);
 	  		int get_total_numeros_aposta();
 	  		void alocar_array();
@@ -48,7 +48,7 @@ namespace ir {
 		int tabuleiro[8][10];
 		public:
 			void inicializa_tabuleiro();
-			void print_tabuleiro(Sorteio sorteio, NumerosAposta* aposta);
+			void print_tabuleiro(Sorteio* sorteio, NumerosAposta* aposta);
 	};
 
 
